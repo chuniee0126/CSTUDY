@@ -2,17 +2,12 @@
 
 int main(void)
 {
-	int x1, x2, y1, y2 = 0;
-	int scale = 0;
+	char a;
 
-	printf("좌측 하단 좌표 입력 : ");
-	scanf("%d %d", &x1, &y1);
-	printf("우측 상단 좌표 입력 : ");
-	scanf("%d %d", &x2, &y2);
+	printf("please input any char : ");
+	scanf("%c", &a);
 
-	scale = (x2 - x1)*(y2 - y1);
-
-	printf("result is %d\n", scale);
+	printf("%c is %d in ASCII Code\n", a, a);
 
 	return 0;
 	
