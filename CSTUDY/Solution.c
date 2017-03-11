@@ -2,15 +2,14 @@
 
 int main()
 {
-	int num1, num2, num3 = 0;
-	int result = 0;
+	int i;
+	float num = 0.0;
 
-	printf("please input three integer : ");
-	scanf("%d %d %d", &num1, &num2, &num3);
+	for (i = 0; i < 100; i++)
+		num += 0.1;
 
-	result = (num1 - num2)*(num2 + num3)*(num3 % num1);
-
-	printf("result is %d \n", result);
+	printf("result is %f\n", num);
 
 	return 0;
+	
 }
