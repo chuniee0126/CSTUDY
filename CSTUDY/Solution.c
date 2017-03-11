@@ -1,14 +1,18 @@
 #include <stdio.h>
 
-int main()
+int main(void)
 {
-	int i;
-	float num = 0.0;
+	int x1, x2, y1, y2 = 0;
+	int scale = 0;
 
-	for (i = 0; i < 100; i++)
-		num += 0.1;
+	printf("ÁÂÃø ÇÏ´Ü ÁÂÇ¥ ÀÔ·Â : ");
+	scanf("%d %d", &x1, &y1);
+	printf("¿ìÃø »ó´Ü ÁÂÇ¥ ÀÔ·Â : ");
+	scanf("%d %d", &x2, &y2);
 
-	printf("result is %f\n", num);
+	scale = (x2 - x1)*(y2 - y1);
+
+	printf("result is %d\n", scale);
 
 	return 0;
 	
