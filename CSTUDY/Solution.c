@@ -1,32 +1,35 @@
 #include <stdio.h>
 
-int max(int a, int b, int c) {
-	int result = a;
-	if (result <b)
-		result = b;
-	if (result < c)
-		result = c;
+int pib(int num) {
+	int pibo1 = 0, pibo2 = 1, index = 0;
+	int temp;
 
-	return result;
-}
+	printf("피보나치수열 : \n");
 
-int min(int a, int b, int c) {
-	int result = a;
-	if (result > b)
-		result = b;
-	if (result > c)
-		result = c;
+	for (; index < num; index++) {
+		if (index == 0)
+			printf("%d", pibo1);
+		else if (index == 1)
+			printf(", %d", pibo2);
+		else {
+			printf(", %d", pibo1 + pibo2);
+			temp = pibo1;
+			pibo1 = pibo2;
+			pibo2 = temp + pibo2;
+		}
+	}
 
-	return result;
+	printf("\n");
+		
 }
 
 int main(void)
 {
-	int a = 0, b = 0, c = 0;
-	printf("3개의 정수 입력: ");
-	scanf("%d %d %d", &a, &b, &c);
+	int num;
+	printf("자연수 입력: ");
+	scanf("%d", &num);
 
-	printf("가장 큰 수 : %d, 가장 작은 수 : %d\n", max(a, b, c), min(a, b, c));
+	pib(num);
 
 	system("pause");
 
