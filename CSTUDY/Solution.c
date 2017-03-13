@@ -3,28 +3,23 @@
 int main(void)
 {
 	int num;
-	printf("1이상 5이하의 정수 입력: ");
+	printf("0이상 정수 입력: ");
 	scanf("%d", &num);
 
-	switch (num)
+	switch (num/10)
 	{
-	case 1: 
-		printf("1은 ONE \n");
+	case 0: 
+		printf("0이상 10미만\n");
+		break;
+	case 1:
+		printf("10이상 20미만\n");
 		break;
 	case 2:
-		printf("2는 TWO \n");
+		printf("20이상 30미만\n");
 		break;
-	case 3:
-		printf("3은 THREE \n");
+	default: 
+		printf("30이상 \n");
 		break;
-	case 4:
-		printf("4는 FOUR \n");
-		break;
-	case 5:
-		printf("5는 FIVE \n");
-		break;
-	default:
-		printf("I don't know! \n");
 	}
 
 	system("pause");
