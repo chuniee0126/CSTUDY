@@ -2,17 +2,29 @@
 
 int main(void)
 {
-	int Anum, Znum = 0;
-	int result = 0;
+	int num;
+	printf("1이상 5이하의 정수 입력: ");
+	scanf("%d", &num);
 
-	printf("A program to obtain A and Z satisfying the following equation. \n AZ\n+ZA\n--------\n 99\n");
-
-	for (Anum = 0; Anum < 10; Anum++) {
-		for (Znum = 0; Znum < 10; Znum++) {
-			result = 10 * (Anum + Znum) + (Anum + Znum);
-			if (result == 99)
-				printf("A equal %d, Z equal %d \n", Anum, Znum);
-		}
+	switch (num)
+	{
+	case 1: 
+		printf("1은 ONE \n");
+		break;
+	case 2:
+		printf("2는 TWO \n");
+		break;
+	case 3:
+		printf("3은 THREE \n");
+		break;
+	case 4:
+		printf("4는 FOUR \n");
+		break;
+	case 5:
+		printf("5는 FIVE \n");
+		break;
+	default:
+		printf("I don't know! \n");
 	}
 
 	system("pause");
