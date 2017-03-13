@@ -1,26 +1,32 @@
 #include <stdio.h>
 
+int max(int a, int b, int c) {
+	int result = a;
+	if (result <b)
+		result = b;
+	if (result < c)
+		result = c;
+
+	return result;
+}
+
+int min(int a, int b, int c) {
+	int result = a;
+	if (result > b)
+		result = b;
+	if (result > c)
+		result = c;
+
+	return result;
+}
+
 int main(void)
 {
-	int num;
-	printf("0이상 정수 입력: ");
-	scanf("%d", &num);
+	int a = 0, b = 0, c = 0;
+	printf("3개의 정수 입력: ");
+	scanf("%d %d %d", &a, &b, &c);
 
-	switch (num/10)
-	{
-	case 0: 
-		printf("0이상 10미만\n");
-		break;
-	case 1:
-		printf("10이상 20미만\n");
-		break;
-	case 2:
-		printf("20이상 30미만\n");
-		break;
-	default: 
-		printf("30이상 \n");
-		break;
-	}
+	printf("가장 큰 수 : %d, 가장 작은 수 : %d\n", max(a, b, c), min(a, b, c));
 
 	system("pause");
 
