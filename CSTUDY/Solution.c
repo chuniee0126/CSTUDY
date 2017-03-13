@@ -2,22 +2,16 @@
 
 int main(void)
 {
-	int count, num, index = 0;
-	float avr = 0;
+	int index = 1;
+	int result = 0;
 
-	printf("How many integer what you want to input  : ");
-	scanf("%d", &count);
-
-	while (index < count) {
-		printf("input%d : ", index + 1);
-		scanf("%d", &num);
-		avr += num;
+	while (index <= 100) {
+		if ((index % 2) == 0)
+			result += index;
 		index++;
 	}
 
-	avr = (float)num / count;
-
-	printf("average is %f\n", avr);
+	printf("result is %d\n", result);
 
 	system("pause");
 
