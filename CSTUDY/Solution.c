@@ -1,25 +1,22 @@
 #include <stdio.h>
 
+float function(int num) {
+	if (num == 0)
+		return 1;
+	else if (num > 0)
+		return 2 * function(num - 1);
+	else if (num < 0)
+		return 0.5 * function(num + 1);
+}
 
 int main(void)
 {
-	int count = 0, index = 1, num = 0;
+	int num = 0;
 	
-	printf("상수 n 입력 : ");
+	printf("정수 입력 : ");
 	scanf("%d", &num);
 
-	if (num <= 1) {
-		printf("입력값의 경우 1보다 큰 숫자를 넣어주세요\n");
-		return 0;
-	}
-	
-	while (index <= num) {
-		index = index * 2;
-		count++;
-	}
-
-	printf("공식을 만족하는 K의 최댓값은 %d\n", count-1);
-	
+	printf("2의 %d승은 %f\n", num, function(num));
 
 	system("pause");
 	return 0;
