@@ -1,35 +1,22 @@
 #include <stdio.h>
-#include <string.h>
-
-
-void bubble_descending(int ary[], int len) {
-	int index, index2;
-	int temp;
-	for (index = 0; index < (len - 1); index++) {
-		for (index2 = 0; index2 < (len - 1 - index); index2++) {
-			if (ary[index2] < ary[index2 + 1]) {
-				temp = ary[index2];
-				ary[index2] = ary[index2 + 1];
-				ary[index2 + 1] = temp;
-			}
-		}
-	}
-}
 
 
 int main(void)
 {
-	int arr[7];
+	int arr[3][9];
 
-	for (int index = 0; index < 7; index++) {
-		printf("입력 : ");
-		scanf("%d", &arr[index]);
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 9; j++) {
+			arr[i][j] = (i + 2) * (j + 1);
+		}
 	}
 
-	bubble_ascending(arr, 7);
-
-	for (int index = 0; index < 7; index++) {
-		printf("%d ", arr[index]);
+	for (int i = 0; i < 3; i++) {
+		printf("%d단 출력합니다 : \n", i + 2);
+		for (int j = 0; j < 9; j++) {
+			printf("%d \n", arr[i][j]);
+		}
+		printf("\n");
 	}
 
 	printf("\n");
