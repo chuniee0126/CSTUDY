@@ -1,23 +1,32 @@
 #include <stdio.h>
 
 
+void MaxAndMin(int ** maxDptr, int ** minDptr, int arr[], int len) {
+	int i, j = 0, k = 0;
+
+	for (i = 1; i < len; i++) {
+		if (arr[j] < arr[i])
+			j = i;
+		if (arr[k] > arr[i])
+			k = i;
+	}
+
+	*maxDptr = &arr[j];
+	*minDptr = &arr[k];
+
+}
+
 int main(void)
 {
-	int arr[3][9];
+	int * maxptr = 0;
+	int * minptr = 0;
+	int arr[5] = { 3, 4, 6, 9, 2 };
 
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 9; j++) {
-			arr[i][j] = (i + 2) * (j + 1);
-		}
-	}
+	MaxAndMin(&maxptr, &minptr, arr, sizeof(arr)/sizeof(int));
 
-	for (int i = 0; i < 3; i++) {
-		printf("%d단 출력합니다 : \n", i + 2);
-		for (int j = 0; j < 9; j++) {
-			printf("%d \n", arr[i][j]);
-		}
-		printf("\n");
-	}
+	printf("Max %d\n", *maxptr);
+	printf("Min %d\n", *minptr);
+
 
 	printf("\n");
 
