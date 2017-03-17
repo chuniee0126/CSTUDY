@@ -1,34 +1,42 @@
 #include <stdio.h>
 
 
-void MaxAndMin(int ** maxDptr, int ** minDptr, int arr[], int len) {
-	int i, j = 0, k = 0;
+int WhoIsFirst(int age1, int age2, int(*cmp)(int n1, int n2)) {
 
-	for (i = 1; i < len; i++) {
-		if (arr[j] < arr[i])
-			j = i;
-		if (arr[k] > arr[i])
-			k = i;
-	}
+	return cmp(age1, age2);
+}
 
-	*maxDptr = &arr[j];
-	*minDptr = &arr[k];
+int OlderFirst(int age1, int age2) {
+	if (age1 > age2)
+		return age1;
+	else if (age1 < age2)
+		return age2;
+	else
+		return 0;
+}
 
+int YoungerFirst(int age1, int age2) {
+	if (age1 < age2)
+		return age1;
+	else if (age1 > age2)
+		return age2;
+	else
+		return 0;
 }
 
 int main(void)
 {
-	int * maxptr = 0;
-	int * minptr = 0;
-	int arr[5] = { 3, 4, 6, 9, 2 };
+	int age1 = 20;
+	int age2 = 30;
+	int first;
 
-	MaxAndMin(&maxptr, &minptr, arr, sizeof(arr)/sizeof(int));
+	printf("입장순서 1 \n");
+	first = WhoIsFirst(age1, age2, OlderFirst);
+	printf("%d세와 %d세 중 %d세가 먼저 입장! \n\n", age1, age2, first);
 
-	printf("Max %d\n", *maxptr);
-	printf("Min %d\n", *minptr);
-
-
-	printf("\n");
+	printf("입장순서 2 \n");
+	first = WhoIsFirst(age1, age2, YoungerFirst);
+	printf("%d세와 %d세 중 %d세가 먼저 입장! \n\n", age1, age2, first);
 
 	system("pause");
 
