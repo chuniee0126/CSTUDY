@@ -1,42 +1,53 @@
 #include <stdio.h>
 
+void rotation(int (*arrt)[4], int (*(*arr)[4])) {
+	int i = 0;
+	int j = 0;
+	int temp = 0;
+	int carr[4][4];
+	//int * carr[4] = { car[0], car[1], car[2], car[3] };
 
-int WhoIsFirst(int age1, int age2, int(*cmp)(int n1, int n2)) {
-
-	return cmp(age1, age2);
-}
-
-int OlderFirst(int age1, int age2) {
-	if (age1 > age2)
-		return age1;
-	else if (age1 < age2)
-		return age2;
-	else
-		return 0;
-}
-
-int YoungerFirst(int age1, int age2) {
-	if (age1 < age2)
-		return age1;
-	else if (age1 > age2)
-		return age2;
-	else
-		return 0;
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
+			if ((j == 0 && i != 0) || (j ==1 && i == 2)) {
+				carr[i - 1][j] = (*arr)[i][j];
+			}
+			else if ((j == 3 && i != 3) || (j == 2 && i == 1)) {
+				carr[i + 1][j] = (*arr)[i][j];
+			}
+			else if ((i == 0 && j != 3) || (i == 1 && j == 1)) {
+				carr[i][j + 1] = (*arr)[i][j];
+			}
+			else if ((i == 3 && j != 0) || (i == 2 && j == 2)) {
+				carr[i][j - 1] = (*arr)[i][j];
+			}
+		}
+	}
+	(*arr)[0] = carr[0];
+	(*arr)[1] = carr[1];
+	(*arr)[2] = carr[2];
+	(*arr)[3] = carr[3];
 }
 
 int main(void)
 {
-	int age1 = 20;
-	int age2 = 30;
-	int first;
+	int arrt[4][4] = { {1,2,3,4} , {5,6,7,8} , {9,10,11,12}, {13,14,15,16} };
+	int * arrts[4];
+	for (int i = 0; i < 4; i++) {
+		arrts[i] = arrt[i];
+	}
 
-	printf("입장순서 1 \n");
-	first = WhoIsFirst(age1, age2, OlderFirst);
-	printf("%d세와 %d세 중 %d세가 먼저 입장! \n\n", age1, age2, first);
+	for (int index = 0; index < 4; index++) {
+		rotation(&arrt, &arrts);
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				printf("%d ", arrts[i][j]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
 
-	printf("입장순서 2 \n");
-	first = WhoIsFirst(age1, age2, YoungerFirst);
-	printf("%d세와 %d세 중 %d세가 먼저 입장! \n\n", age1, age2, first);
 
 	system("pause");
 
