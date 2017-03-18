@@ -1,47 +1,50 @@
 #include <stdio.h>
 
-void rotation(int (*arrt)[4], int (*(*arr)[4])) {
+void rotation(int (*arr)[4]) {
 	int i = 0;
 	int j = 0;
-	int temp = 0;
-	int carr[4][4];
-	//int * carr[4] = { car[0], car[1], car[2], car[3] };
+	int temp[4][4];
+	//int * temp[4] = { &arr[0], &arr[1], &arr[2], &arr[3] };
+	/*for (int index = 0; index < 4; index++) {
+		for (int jndex = 0; jndex < 4; jndex++) {
+			temp[index][jndex] = arr[index][jndex];
+		}
+	}*/
 
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 4; j++) {
-			if ((j == 0 && i != 0) || (j ==1 && i == 2)) {
-				carr[i - 1][j] = (*arr)[i][j];
+			if (i == 0) {
+				temp[j][3] = (arr)[i][j];
 			}
-			else if ((j == 3 && i != 3) || (j == 2 && i == 1)) {
-				carr[i + 1][j] = (*arr)[i][j];
+			if (i == 1) {
+				temp[j][2] = (arr)[i][j];
 			}
-			else if ((i == 0 && j != 3) || (i == 1 && j == 1)) {
-				carr[i][j + 1] = (*arr)[i][j];
+			if (i == 2) {
+				temp[j][1] = (arr)[i][j];
 			}
-			else if ((i == 3 && j != 0) || (i == 2 && j == 2)) {
-				carr[i][j - 1] = (*arr)[i][j];
+			if (i == 3) {
+				temp[j][0] = (arr)[i][j];
 			}
 		}
 	}
-	(*arr)[0] = carr[0];
-	(*arr)[1] = carr[1];
-	(*arr)[2] = carr[2];
-	(*arr)[3] = carr[3];
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			(arr)[i][j] = temp[i][j];
+		}
+	}
 }
 
 int main(void)
 {
-	int arrt[4][4] = { {1,2,3,4} , {5,6,7,8} , {9,10,11,12}, {13,14,15,16} };
-	int * arrts[4];
-	for (int i = 0; i < 4; i++) {
-		arrts[i] = arrt[i];
-	}
+	int arr[4][4] = { {1,2,3,4} , {5,6,7,8} , {9,10,11,12}, {13,14,15,16} };
+	// int * arrts[4] = { arrt[0], arrt[1], arrt[2], arrt[3] };
 
 	for (int index = 0; index < 4; index++) {
-		rotation(&arrt, &arrts);
+		rotation(arr);
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				printf("%d ", arrts[i][j]);
+				printf("%2d ", arr[i][j]);
 			}
 			printf("\n");
 		}
