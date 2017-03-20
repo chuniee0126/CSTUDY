@@ -1,18 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main(void)
 {
-	int i;
-	int temp;
-	printf("난수의 범위: 0부터 99까지 \n");
-	for (i = 0; i < 5; i) {
-		temp = rand();
-		if (temp >= 0 && temp <= 99) {
-			printf("난수 출력: %d \n", temp);
+	int dice1 = 0;
+	int dice2 = 0;
+	int i = 0;
+	srand((int)time(NULL));
+
+	while (i != 1) {	
+		dice1 = rand();
+		if (dice1 >= 1 && dice1 <= 6) {
+			printf("주사위 1의 결과 %d \n", dice1);
 			i++;
 		}
 	}
+	while (i != 2) {
+		dice2 = rand();
+		if (dice2 >= 1 && dice2 <= 6) {
+			printf("주사위 1의 결과 %d \n", dice2);
+			i++;
+		}
+	}
+
 	return 0;
 	
 }
