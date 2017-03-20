@@ -2,14 +2,23 @@
 #include <stdlib.h>
 #include <time.h>
 
-void cheak(int temp, char (*temps)[15], char (*rock)[15], char (*scissor)[15], char (*paper)[15]) {
+void cheak(int temp, char temps[], char rock[], char scissor[], char paper[]) {
 	switch (temp)
 	{
-	case 1: (*temps)[0] = rock[0];
+	case 1:
+		for (int i = 0; i < 15; i++) {
+			temps[i] = rock[i];
+		}
 		break;
-	case 2: (*temps)[0] = scissor[0];
+	case 2: 
+		for (int i = 0; i < 15; i++) {
+			temps[i] = scissor[i];
+		}
 		break;
-	case 3: (*temps)[0] = paper[0];
+	case 3: 
+		for (int i = 0; i < 15; i++) {
+			temps[i] = paper[i];
+		}
 		break;
 	default:
 		break;
@@ -17,24 +26,33 @@ void cheak(int temp, char (*temps)[15], char (*rock)[15], char (*scissor)[15], c
 }
 
 void results(int user, int computer, char result[]) {
+	char temp1[100] = "비겼습니다!";
+	char temp2[100] = "당신이 이겼습니다!";
+	char temp3[100] = "당신이 졌습니다!";
 	if (user == computer)
-		result = "비겼습니다!";
-	else if(((user - computer) == -1) || ((user - computer) == -2))
-		result = "당신이 이겼습니다!";
+		for (int i = 0; i < 100; i++) {
+			result[i] = temp1[i];
+		}
+	else if(((user - computer) == -1) || ((user - computer) == 2))
+		for (int i = 0; i < 100; i++) {
+			result[i] = temp2[i];
+		}
 	else
-		result[100] = "당신이 졌습니다!";
+		for (int i = 0; i < 100; i++) {
+			result[i] = temp3[i];
+		}
 }
 
 int main(void)
 {
-	char (*rock)[15] = "1";
-	char (*scissor)[15] = "2";
-	char (*paper)[15] = "3";
-	char users[1][15];
-	char computers[1][15];
+	char rock[15] = "바위";
+	char scissor[15] = "가위";
+	char paper[15] = "보";
+	char users[15];
+	char computers[15];
 	int user = 0;
 	int computer = 0;
-	char result[1][100];
+	char result[100];
 
 	srand((int)time(NULL));
 
@@ -42,7 +60,7 @@ int main(void)
 		printf("바위는 1, 가위는 2, 보는 3: ");
 		scanf("%d", &user);
 		while (1) {
-			computer = 1;
+			computer = rand();
 			if (computer >= 1 && computer <= 3)
 				break;
 		}
@@ -53,6 +71,9 @@ int main(void)
 		results(user, computer, result);
 
 		printf("당신은 %s 선택, 컴퓨터는 %s 선택, %s \n", users, computers, result);
+
+		if (((user - computer) == 1) || ((user - computer) == -2))
+			break;
 
 	}
 	
