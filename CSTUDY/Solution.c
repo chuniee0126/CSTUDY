@@ -3,20 +3,19 @@
 
 int main(void)
 {
-	int ch;
+	char str[50];
+	int sum = 0;
+	gets(str);
 
-	while (1)
-	{
-		ch = getchar();
-		
-		if (ch == EOF)
+	for (int i = 0; i < 50; i++) {
+		if (str[i] >= 49 && str[i] < 58)
+			sum = sum + str[i] - 48;
+		else if (str[i] == NULL)
 			break;
-
-		if (ch < 'a' && ch >= 'A')
-			putchar(ch + 32 );
-		else if(ch >= 'a' && ch <= 'z')
-			putchar(ch - 32);
 	}
+	
+	printf("%d \n", sum);
+		
 	return 0;
 	
 }
