@@ -3,14 +3,19 @@
 
 int main(void)
 {
-	int ch1;
+	int ch;
 
 	while (1)
 	{
-		ch1 = getchar();
-		if (ch1 == EOF)
+		ch = getchar();
+		
+		if (ch == EOF)
 			break;
-		putchar(ch1);
+
+		if (ch < 'a' && ch >= 'A')
+			putchar(ch + 32 );
+		else if(ch >= 'a' && ch <= 'z')
+			putchar(ch - 32);
 	}
 	return 0;
 	
