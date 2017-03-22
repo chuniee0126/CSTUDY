@@ -1,21 +1,24 @@
 #include <stdio.h>
 
+void CleanLineFromReadBuffer(void) {
+	while (getchar() != '\n');
+}
 
 int main(void)
 {
-	char str[50];
-	int sum = 0;
-	gets(str);
+	char perID[7];
+	char name[10];
 
-	for (int i = 0; i < 50; i++) {
-		if (str[i] >= 49 && str[i] < 58)
-			sum = sum + str[i] - 48;
-		else if (str[i] == NULL)
-			break;
-	}
-	
-	printf("%d \n", sum);
-		
+	fputs("주민번호 앞 6자리 입력 : ", stdout);
+	fgets(perID, sizeof(perID), stdin);
+	CleanLineFromReadBuffer();
+
+	fputs("이름 입력 : ", stdout);
+	fgets(name, sizeof(name), stdin);
+
+	printf("주민번호 : %s \n", perID);
+	printf("이름 : %s \n", name);
+
 	return 0;
 	
 }
