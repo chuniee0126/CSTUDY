@@ -1,27 +1,47 @@
 #include <stdio.h>
 #include <string.h>
 
+
+void emptyBuffer(void) {
+	while (getchar() != '\n');
+}
+
 struct employee
 {
 	char name[10];
 	char perId[16];
 	long pee;
-} per1, per2;
+} per[3];
 
 int main(void)
 {
-	fputs("please input name : ", stdout);
-	fgets(per1.name, sizeof(per1.name), stdin);
-	per1.name[strlen(per1.name) - 1] = 0;
+	int i;
 
-	fputs("please input personal ID : ", stdout);
-	fgets(per1.perId, sizeof(per1.perId), stdin);
-	per1.perId[strlen(per1.perId) - 1] = 0;
+	for (i = 0; i < 3; i++) {
 
-	fputs("please input pee : ", stdout);
-	scanf("%ld", &per1.pee);
+		printf("%d번째 사람의 정보를 입력하세요.\n", i+1);
 
-	printf("이름은 %s, 주민번호는 %s, 받고있는 급여는 %ld원 입니다.\n", per1.name, per1.perId, per1.pee);
+		fputs("please input name : ", stdout);
+		fgets(per[i].name, sizeof(per[i].name), stdin);
+		per[i].name[strlen(per[i].name) - 1] = 0;
+
+		fputs("please input personal ID : ", stdout);
+		fgets(per[i].perId, sizeof(per[i].perId), stdin);
+		per[i].perId[strlen(per[i].perId) - 1] = 0;
+
+		fputs("please input pee : ", stdout);
+		scanf("%ld", &per[i].pee);
+		
+		puts("");
+
+		emptyBuffer();
+	}
+
+	
+	for (i = 0; i < 3; i++) {
+		printf("%d번 사원의 이름은 %s, 주민번호는 %s, 받고있는 급여는 %ld원 입니다.\n", i+1, per[i].name, per[i].perId, per[i].pee);
+	}
+	
 
 
 	return 0;
