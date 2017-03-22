@@ -1,23 +1,28 @@
 #include <stdio.h>
+#include <string.h>
 
-void CleanLineFromReadBuffer(void) {
-	while (getchar() != '\n');
+void RemoveBSN(char str[]) {
+	int len = strlen(str);
+	str[len - 1] = 0;
 }
 
 int main(void)
 {
-	char perID[7];
-	char name[10];
+	char str1[20];
+	char str2[20];
+	char str3[40];
 
-	fputs("주민번호 앞 6자리 입력 : ", stdout);
-	fgets(perID, sizeof(perID), stdin);
-	CleanLineFromReadBuffer();
+	fgets(str1, sizeof(str1), stdin);
+	fgets(str2, sizeof(str2), stdin);
 
-	fputs("이름 입력 : ", stdout);
-	fgets(name, sizeof(name), stdin);
+	RemoveBSN(str1);
+	RemoveBSN(str2);
 
-	printf("주민번호 : %s \n", perID);
-	printf("이름 : %s \n", name);
+	strncpy(str3, str1, sizeof(str3));
+
+	strncat(str3, str2, sizeof(str3));
+
+	fputs(str3, stdout);
 
 	return 0;
 	
