@@ -24,6 +24,8 @@ int main(void)
 
 	fputs(str3, stdout);
 
+	printf("\n");
+
 	return 0;
 	
 }
