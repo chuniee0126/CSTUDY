@@ -1,30 +1,46 @@
 #include <stdio.h>
 #include <string.h>
 
-void RemoveBSN(char str[]) {
-	int len = strlen(str);
-	str[len - 1] = 0;
-}
-
 int main(void)
 {
-	char str1[20];
-	char str2[20];
-	char str3[40];
+	char arr[2][50];
+	int name[2][50];
+	int result[2] = { 0,0 };
+	int temp = 0;
+	int i, j, h;
 
-	fgets(str1, sizeof(str1), stdin);
-	fgets(str2, sizeof(str2), stdin);
+	for (i = 0; i < 2; i++) {
+		fgets(arr[i], sizeof(arr[i]), stdin);
+	}
 
-	RemoveBSN(str1);
-	RemoveBSN(str2);
+	for (j = 0; j < 2; j++) {
+		for (h = 0; h < 50; h++) {
+			if (arr[j][h] == 32){
+				name[j][h] = NULL;
+				h++;
+				break;
+			}
+			name[j][h] = arr[j][h];
+		}
 
-	strncpy(str3, str1, sizeof(str3));
+		while (arr[j][h] != '\n') {
+			temp = arr[j][h] - 48;
+			result[j] = (result[j] * 10) + temp;
+			h++;
+		}
+	}
 
-	strncat(str3, str2, sizeof(str3));
+	if (!strcmp(name[0], name[1]))
+		printf("이름이 같습니다. \n");
+	else
+		printf("이름이 같지 않습니다. \n");
 
-	fputs(str3, stdout);
+	if (result[0] == result[1])
+		printf("나이가 같습니다. \n");
+	else
+		printf("나이가 같지 않습니다. \n");
 
-	printf("\n");
+
 
 	return 0;
 	
