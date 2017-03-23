@@ -3,25 +3,25 @@
 
 int main(void)
 {
-	char str[30];
+	FILE * src = fopen("src.txt", "rt");
+	FILE * des = fopen("des.txt", "wt");
 	int ch;
-	FILE * fp = fopen("simple.txt", "rt");
-	if (fp == NULL) {
-		puts("파일오픈 실패");
+
+	if (src == NULL || des == NULL) {
+		puts("파일오픈 실패!");
 		return -1;
 	}
 
-	ch = fgetc(fp);
-	printf("%c \n", ch);
-	ch = fgetc(fp);
-	printf("%c \n", ch);
+	while ((ch = fgetc(src)) != EOF)
+		fputc(ch, des);
 
-	fgets(str, sizeof(str), fp);
-	printf("%s", str);
-	fgets(str, sizeof(str), fp);
-	printf("%s", str);
+	if (feof(src) != 0)
+		puts("파일복사 완료!");
+	else
+		puts("파일복사 실패!");
 
-	fclose(fp);
+	fclose(src);
+	fclose(des);
 
 	return 0;
 }
