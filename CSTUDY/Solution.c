@@ -2,61 +2,35 @@
 #include <string.h>
 
 
-char * InputString(int lenght) {
-	char * str = (char *)malloc(sizeof(char) * lenght);
-
-	printf("Please input string : ");
-	gets(str);
-
-	return str;
-}
-
-void calculate(char * str, int lenght) {
-	
-	int Start = (strlen(str) - 1);
-	int End = (strlen(str) - 1);
-
-	for (int i = Start; i >= 0; i--) {
-		Start = i;
-		if ((str[Start] == ' ') && (Start != 0)) {
-			for (int j = (Start + 1); j <= End; j++) {
-				printf("%c", str[j]);
-			}
-			printf(" ");
-			End = (Start - 1);
-		}
-		else if (Start == 0) {
-			for (int j = Start; j <= End; j++) {
-				printf("%c", str[j]);
-			}
-		}
-	}
-
-	printf("\n");
-
-	return;
-
-}
-
 
 int main(void)
 {
-	int lenght;
-	char * str;
-	char temp;
+	int * arr = (int *)malloc(sizeof(int) * 5);
+	int count = 0, lenght = 5;
 
-	printf("How long what you will be input string here : ");
-	scanf("%d", &lenght);
-	
-	temp = getc(stdin);
 
-	str = InputString(lenght);
+	while (1)
+	{
+		if (count < lenght) {
+			printf("%d번 숫자를 입력하세요 : ", count+1);
+			scanf("%d", &arr[count]);
+			if (arr[count] == -1)
+				break;
+			count++;
+		}
+		else
+		{
+			arr = (int*)realloc(arr, sizeof(int) * (count + 3));
+			lenght = count + 3;
+		}
+	}
 
-	printf("Result of calculate : ");
+	for (int i = 0; i <= count; i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
 
-	calculate(str, lenght);
-
-	free(str);
+	free(arr);
 
 	return 0;
 }
