@@ -1,29 +1,62 @@
 #include <stdio.h>
+#include <string.h>
 
-char * ReadUserName(void) {
-	char * name = (char *)malloc(sizeof(char) * 30);
 
-	printf("What's your name? : ");
-	gets(name);
-	return name;
+char * InputString(int lenght) {
+	char * str = (char *)malloc(sizeof(char) * lenght);
+
+	printf("Please input string : ");
+	gets(str);
+
+	return str;
+}
+
+void calculate(char * str, int lenght) {
+	
+	int Start = (strlen(str) - 1);
+	int End = (strlen(str) - 1);
+
+	for (int i = Start; i >= 0; i--) {
+		Start = i;
+		if ((str[Start] == ' ') && (Start != 0)) {
+			for (int j = (Start + 1); j <= End; j++) {
+				printf("%c", str[j]);
+			}
+			printf(" ");
+			End = (Start - 1);
+		}
+		else if (Start == 0) {
+			for (int j = Start; j <= End; j++) {
+				printf("%c", str[j]);
+			}
+		}
+	}
+
+	printf("\n");
+
+	return;
+
 }
 
 
 int main(void)
 {
-	char * name1;
-	char * name2;
+	int lenght;
+	char * str;
+	char temp;
 
-	name1 = ReadUserName();
-	printf("name1 : %s \n\n", name1);
-	name2 = ReadUserName();
-	printf("name2 : %s \n\n", name2);
+	printf("How long what you will be input string here : ");
+	scanf("%d", &lenght);
+	
+	temp = getc(stdin);
 
-	printf("name1 : %s \n", name1);
-	printf("name2 : %s \n", name2);
+	str = InputString(lenght);
 
-	free(name1);
-	free(name2);
+	printf("Result of calculate : ");
+
+	calculate(str, lenght);
+
+	free(str);
 
 	return 0;
 }
