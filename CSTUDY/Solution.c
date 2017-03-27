@@ -1,36 +1,52 @@
 #include <stdio.h>
-#include <string.h>
+#include <math.h>
+
+int check(int * arrt) {
+
+	int temp = 0;
+
+	while (1) {
+		scanf("%d", &temp);
+
+		if (arrt[temp - 1] == 0 && temp > 0 && temp <= 16) {
+			arrt[temp - 1] = 1;
+			return temp;
+		}
+		else
+			printf("That int is already there, please another int : ");
+	}
+}
 
 
 
 int main(void)
 {
-	int * arr = (int *)malloc(sizeof(int) * 5);
-	int count = 0, lenght = 5;
+	int arr[4][4];
+	int i = 0, j = 0;
+	int temp = 0;
+	int checkint[16];
 
+	for (i = 0; i < 16; i++) {
+		checkint[i] = 0;
+	}
 
-	while (1)
-	{
-		if (count < lenght) {
-			printf("%d번 숫자를 입력하세요 : ", count+1);
-			scanf("%d", &arr[count]);
-			if (arr[count] == -1)
-				break;
-			count++;
-		}
-		else
-		{
-			arr = (int*)realloc(arr, sizeof(int) * (count + 3));
-			lenght = count + 3;
+	for (i = 0; i < 4; i++) {
+		printf("please input %d line : ", i+1);
+		for (j = 0; j < 4; j++) {
+			temp = check(checkint);
+			arr[i][j] = temp;
 		}
 	}
 
-	for (int i = 0; i <= count; i++) {
-		printf("%d ", arr[i]);
-	}
-	printf("\n");
 
-	free(arr);
+
+	for (i = 0; i < 4; i++) {
+		for (j = 0; j < 4; j++) {
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+	
 
 	return 0;
 }
