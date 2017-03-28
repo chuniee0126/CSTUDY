@@ -82,6 +82,8 @@ int main(void)
 		}
 	}
 
+	printf("만들어진 빙고판\n");
+
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 4; j++) {
 			printf("%3d ", arr[i][j]);
@@ -101,6 +103,8 @@ int main(void)
 				break;
 		}
 	}
+
+	printf("빙고완료\n");
 
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 4; j++) {
