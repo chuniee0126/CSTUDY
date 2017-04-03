@@ -3,16 +3,30 @@
 
 void Swap(int (*arr)[3])
 {
-	int temp = 0;
+	int temp[3][3];
 	int i = 0, j = 0;
 
-	for (j = 0; j < 3; j++) {
-		temp = arr[2][j];
-		arr[2][j] = arr[1][j];
-		arr[1][j] = arr[0][j];
-		arr[0][j] = temp;
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			temp[i][j] = arr[i][j];
+		}
 	}
 
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			if ((i == 0 && j != 2) || (i == 1 && j == 0))
+				arr[i][j + 1] = temp[i][j];
+			else if (i != 2 && j == 2)
+				arr[i + 1][j] = temp[i][j];
+			else if (i == 2 && j != 0)
+				arr[i][j - 1] = temp[i][j];
+			else if (i == 2 && j == 0)
+				arr[i - 1][j] = temp[i][j];
+			else
+				arr[i - 1][j - 1] = temp[i][j];
+		}
+	}
+	
 	return;
 }
 
@@ -42,7 +56,7 @@ int main(void)
 
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < 3; j++) {
-			printf("%d ", arr[i][j]);
+			printf("%3d ", arr[i][j]);
 		}
 		printf("\n");
 	}
@@ -53,7 +67,7 @@ int main(void)
 
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < 3; j++) {
-			printf("%d ", arr[i][j]);
+			printf("%3d ", arr[i][j]);
 		}
 		printf("\n");
 	}
