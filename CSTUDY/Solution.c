@@ -20,13 +20,21 @@ void Swap(int (*arr)[3])
 int main(void)
 {
 	int arr[3][3];
+	int temp = 0;
 	int i = 0, j = 0;
 
 
 	for (i = 0; i < 3; i++) {
 		printf("%d번 라인 채우기 : ", i + 1);
-		for (j = 0; j < 3; j++) {
-			scanf("%d", &arr[i][j]);
+		j = 0;
+		while(j < 3) {
+			scanf("%d", &temp);
+			if ((temp > 0) && (temp <= 100)) {
+				arr[i][j] = temp;
+				j++;
+			}
+			else
+				printf("1이상 100이하의 수를 입력해주세요 : ");
 		}
 	}
 
